@@ -1,0 +1,1 @@
+include ':app', ':popupwindow', ':weixinvoice', ':dragger2demo', ':greendao', ':ijkplayer'
