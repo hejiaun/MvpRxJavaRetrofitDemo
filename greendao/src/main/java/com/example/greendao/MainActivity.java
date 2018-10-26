@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUI() {
+
         btnInsert = (Button) findViewById(R.id.btnInsert);
         tv = (TextView) findViewById(R.id.tv);
         btnDelete = (Button) findViewById(R.id.btnDelete);
