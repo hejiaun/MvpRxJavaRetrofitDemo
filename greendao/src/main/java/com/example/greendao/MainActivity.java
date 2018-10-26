@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUI() {
-        tv = (TextView) findViewById(R.id.tv);
         btnInsert = (Button) findViewById(R.id.btnInsert);
+        tv = (TextView) findViewById(R.id.tv);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnUpdate = (Button) findViewById(R.id.btnUpdate);
         btnSelect = (Button) findViewById(R.id.btnQuery);
