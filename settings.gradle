@@ -1,1 +1,1 @@
-include ':app', ':popupwindow', ':weixinvoice', ':dragger2demo', ':greendao', ':ijkplayer'
+include ':app', ':popupwindow', ':weixinvoice', ':dragger2demo', ':greendao', ':ijkplayer', ':jcenteraardemo', ':constrainlayoutdemo', ':navigation'

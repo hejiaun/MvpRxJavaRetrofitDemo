@@ -1,5 +1,6 @@
 package com.example.greendao;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,6 @@ import com.example.greendao.entity.StudentEntity;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TextView tv;
     private Button btnInsert;
     private Button btnDelete;
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUI() {
-
         btnInsert = (Button) findViewById(R.id.btnInsert);
         tv = (TextView) findViewById(R.id.tv);
         btnDelete = (Button) findViewById(R.id.btnDelete);
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnInsert:
+                studentEntityDao.deleteAll();
                 StudentEntity studentEntity1 = new StudentEntity(new Long(1234), "张1", 120);
                 StudentEntity studentEntity2 = new StudentEntity(new Long(456), "张2", 200);
                 StudentEntity studentEntity3 = new StudentEntity(new Long(789), "张3", 250);
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnDelete:
                 studentEntityDao.delete(studentEntityDao.queryBuilder().where(StudentEntityDao.Properties.Id.eq(1234)).build().unique());
                 StudentEntity s = studentEntityDao.queryBuilder().where(StudentEntityDao.Properties.Id.eq(1234)).build().unique();
-                if(s!=null) {
+                if (s != null) {
                     tv.setText(s.toString() + "");
-                }else {
+                } else {
                     tv.setText("null");
                 }
                 break;
@@ -79,14 +79,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 List<StudentEntity> list = studentEntityDao.queryBuilder()
                         .where(StudentEntityDao.Properties.Id.notEq(1))
                         .orderAsc(StudentEntityDao.Properties.Id)
-                        .limit(2)
                         .build().list();
                 String result = "";
                 for (int i = 0; i < list.size(); i++) {
                     result = result + "\n" + list.get(i).toString();
                 }
+//                studentEntityDao.queryBuilder().
                 tv.setText(result);
+//                String pakName = "";
+//                Intent intent = new Intent(Intent.ACTION_SEND); // 启动分享发送的属性
+//                intent.setType("text/plain"); // 分享发送的数据类型
+//                pakName = "com.tencent.mm";  //微信
+//                intent.setPackage(pakName);
+//                intent.putExtra(Intent.EXTRA_SUBJECT, "这里是分享主题"); // 分享的主题
+//                intent.putExtra(Intent.EXTRA_TEXT, "这里是分享内容"); // 分享的内容
+//                this.startActivity(Intent.createChooser(intent, ""));// 目标应用选择对话框的标题;
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

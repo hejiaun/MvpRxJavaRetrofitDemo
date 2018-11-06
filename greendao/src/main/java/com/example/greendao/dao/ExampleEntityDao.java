@@ -28,7 +28,6 @@ public class ExampleEntityDao extends AbstractDao<ExampleEntity, Long> {
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
     }
 
-
     public ExampleEntityDao(DaoConfig config) {
         super(config);
     }
